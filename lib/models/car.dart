@@ -9,12 +9,12 @@ class Car extends Vehicle {
   final String _imagePath;
 
   const Car( // Jadikan konstruktor ini const
-      String model,
+      super.model,
       this._description,
       this._year,
       this._engineType,
       this._imagePath,
-      ) : super(model);
+      );
 
   String get description => _description;
   int get year => _year;

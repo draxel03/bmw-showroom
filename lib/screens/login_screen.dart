@@ -1,8 +1,5 @@
-// lib/screens/login_screen.dart
-
 import 'package:flutter/material.dart';
-import 'home_page.dart'; // Ganti import ke HomePage
-import 'home_screen.dart'; // Tetap impor HomeScreen, tetapi tidak digunakan di sini
+import 'home_page.dart'; // Import HomePage. dart di mana halaman utama Anda berada.
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,8 +18,11 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_formKey.currentState!.validate()) {
       if (_emailController.text == 'admin' &&
           _passwordController.text == '123456') {
+        // Navigasi ke HomePage dan hapus rute login dari tumpukan
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomePage()), // Navigasi ke HomePage
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.blue, Colors.white],
+            colors: [Color(0xFF8E2DE2), Color(0xFF4A00E0)], // Menggunakan warna gradien yang lebih solid dan konsisten
           ),
         ),
         child: Center(
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 30),
                   const Text(
-                    'Login',
+                    'Selamat Datang', // Mengubah teks "Login" menjadi lebih ramah
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
@@ -70,11 +70,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 30),
                   TextFormField(
                     controller: _emailController,
+                    keyboardType: TextInputType.emailAddress, // Menambahkan keyboard email
                     decoration: InputDecoration(
                       hintText: 'Email',
                       hintStyle: const TextStyle(color: Colors.grey),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.white.withOpacity(0.9),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15.0),
                         borderSide: BorderSide.none,
@@ -96,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: 'Password',
                       hintStyle: const TextStyle(color: Colors.grey),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.white.withOpacity(0.9),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15.0),
                         borderSide: BorderSide.none,
@@ -125,20 +126,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                     onPressed: _login,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue[900],
+                      backgroundColor: Colors.white, // Tombol putih agar kontras
                       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      shadowColor: const Color.fromARGB(128, 0, 0, 0),
+                      shadowColor: Colors.black.withOpacity(0.3),
                       elevation: 10,
                     ),
                     child: const Text(
-                      'Login',
+                      'Masuk', // Mengubah teks tombol
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Color(0xFF4A00E0), // Menggunakan warna gradien yang sama
                       ),
                     ),
                   ),
